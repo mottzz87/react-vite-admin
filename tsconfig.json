@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"allowJs": false,
+		"skipLibCheck": false,
+		"esModuleInterop": false,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"paths": {
+			"@/*": ["./src/*"],
+			"#/*": ["./*"]
+		} /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,
+		"jsx": "react"
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.d.ts",
+		"src/**/*.tsx",
+		"src/**/*.vue",
+		"types/**/*.d.ts",
+		"types/**/*.ts",
+		"build/**/*.ts",
+		"vite.config.ts"
+	]
+}

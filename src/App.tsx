@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 00:52:36
- * @LastEditTime: 2021-08-30 23:08:41
+ * @LastEditTime: 2021-08-31 02:21:14
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\App.tsx
@@ -11,7 +11,7 @@ import React, { Suspense } from 'react';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import useStore from '@/store/useStore';
 import Login from '@/pages/Login'
-import Layout from '@/layout';
+import Layout from '@/layout/BasicLayout';
 
 const App = () => {
   const { user } = useStore((state) => ({ ...state }))

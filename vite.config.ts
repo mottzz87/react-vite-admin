@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 00:52:36
- * @LastEditTime: 2021-08-29 16:59:20
+ * @LastEditTime: 2021-08-31 02:31:05
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\vite.config.ts
@@ -21,10 +21,11 @@ const { dependencies, devDependencies, name, version } = pkg;
 
 const pathResolve = (dir: string): any => resolve(__dirname, '.', dir);
 
-const alias: Record<string, string> = {
-	'@': pathResolve('./src/'),
-	'#': pathResolve('./'),
-};
+const alias: any[] = [
+	{ find: '@', replacement: pathResolve('src') },
+	{ find: '#', replacement: pathResolve('./') },
+	{ find: /^~/, replacement: '' },
+];
 const __APP_INFO__ = {
 	pkg: { dependencies, devDependencies, name, version },
 	lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),

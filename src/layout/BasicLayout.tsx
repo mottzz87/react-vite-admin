@@ -33,6 +33,17 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
           history.push('/login');
         }
       }}
+      breadcrumbRender={(routers = []) => [
+        {
+          path: '/',
+          breadcrumbName: '主页',
+        },
+        {
+          path: '/',
+          breadcrumbName: '测试页',
+        },
+        ...routers,
+      ]}
       menuItemRender={(menuItemProps, defaultDom) => {
         if (
           menuItemProps.isUrl ||

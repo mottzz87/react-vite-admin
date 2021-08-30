@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 16:49:41
- * @LastEditTime: 2021-08-29 00:33:37
+ * @LastEditTime: 2021-08-29 21:36:56
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\store\types\user.ts
@@ -19,10 +19,12 @@ interface InfoProps {
 	desc: string;
 }
 
-interface MenuProps {
+export interface MenuProps {
 	id: string;
 	path: string;
 	title: string;
+	icon?: string;
+	children: MenuProps[];
 }
 
 /**@name 用户权限  拥有全部权限为超级管理员 [1,2,3]  */

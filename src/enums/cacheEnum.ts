@@ -1,11 +1,14 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-29 01:23:46
- * @LastEditTime: 2021-08-29 01:25:33
+ * @LastEditTime: 2021-08-29 17:27:40
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\enums\cacheEnum.ts
  */
+
+//login account info
+export const ACCOUNT_INFO_KEY = 'ACCOUNT_INFO__';
 
 // token key
 export const TOKEN_KEY = 'TOKEN__';

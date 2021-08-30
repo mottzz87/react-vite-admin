@@ -1,139 +1,41 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 14:58:57
- * @LastEditTime: 2021-08-29 01:14:40
+ * @LastEditTime: 2021-08-30 23:40:03
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\routes\index.ts
  */
-import React from 'react';
+import Loadable from '@loadable/component';
+import { IRoute } from '#/types/router';
+import { Demo1, Demo2, Demo3 } from '@/pages/permission/Demo';
+const Page404 = Loadable(() => import('@/pages/error/404'));
+const Page401 = Loadable(() => import('@/pages/error/401'));
 
-const Page404 = React.lazy(() => import('@/pages/Errors/Page404'));
-const Home = React.lazy(() => import('@/pages/Home'));
-const Login = React.lazy(() => import('@/pages/User/Login'));
-const Register = React.lazy(() => import('@/pages/User/Register'));
+const Home = Loadable(() => import('@/pages/Home'));
+const About = Loadable(() => import('@/pages/About'));
 
-export interface IRouteBase {
-	// 路由路径
-	path: string;
-	// 路由组件
-	component?: any;
-	// 302 跳转
-	redirect?: string;
-	// 路由信息
-	meta: IRouteMeta;
-	// 是否校验权限, false 为不校验, 不存在该属性或者为true 为校验, 子路由会继承父路由的 auth 属性
-	auth?: boolean;
-}
+export const routes: IRoute[] = [
+	{ path: '/home', name: 'home', component: Home },
+	{ path: '/system/menu', name: 'systemMenu', component: About },
+	{ path: '/permission/demo1', name: 'permissionDemo1', component: Demo1 },
+	{ path: '/permission/demo2', name: 'permissionDemo2', component: Demo2 },
+	{ path: '/permission/demo3', name: 'permissionDemo3', component: Demo3 },
+	{ path: '/components/demo1', name: 'componentsDemo1', component: Demo1 },
+	{ path: '/components/demo2', name: 'componentsDemo2', component: Demo2 },
+	{ path: '/components/demo3', name: 'componentsDemo3', component: Demo3 },
 
-export enum RoleEnum {
-	// super admin
-	SUPER = 'admin',
+	{ path: '/charts/demo1', name: 'componentsDemo1', component: Demo1 },
+	{ path: '/charts/demo2', name: 'componentsDemo2', component: Demo2 },
+	{ path: '/charts/demo3', name: 'componentsDemo3', component: Demo3 },
 
-	// tester
-	TEST = 'test',
-}
-
-export interface IRouteMeta {
-	orderNo?: number;
-	// title
-	title: string;
-	// Whether to ignore permissions
-	ignoreAuth?: boolean;
-	// role info
-	roles?: RoleEnum[];
-	// Whether not to cache
-	ignoreKeepAlive?: boolean;
-	// Is it fixed on tab
-	affix?: boolean;
-	// icon on tab
-	icon?: string;
-	frameSrc?: string;
-	// current page transition
-	transitionName?: string;
-	// Whether the route has been dynamically added
-	hideBreadcrumb?: boolean;
-	// Hide submenu
-	hideChildrenInMenu?: boolean;
-	// Carrying parameters
-	carryParam?: boolean;
-	// Used internally to mark single-level menus
-	single?: boolean;
-	// Currently active menu
-	currentActiveMenu?: string;
-	// Never show in tab
-	hideTab?: boolean;
-	// Never show in menu
-	hideMenu?: boolean;
-	isLink?: boolean;
-	// only build for Menu
-	ignoreRoute?: boolean;
-	// Hide path for children
-	hidePathForChildren?: boolean;
-}
-
-export interface IRoute extends IRouteBase {
-	children?: IRoute[];
-}
-
-export const pages: IRoute[] = [
+	{ path: '/nested/menu1/demo1', name: 'componentsDemo1', component: Demo1 },
 	{
-		path: '/home',
-		meta: {
-			title: '首页',
-			icon: 'home',
-		},
-		component: Home,
+		path: '/nested/menu1/demo2/demo2-1',
+		name: 'componentsDemo2',
+		component: Demo2,
 	},
-	{
-		path: '/login',
-		component: Login,
-		meta: {
-			title: '登录',
-		},
-	},
-	{
-		path: '/register',
-		component: Register,
-		meta: {
-			title: '注册',
-		},
-	},
-	{
-		path: '/error',
-		meta: {
-			title: '页面不存在',
-		},
-		component: Page404,
-	},
-	{
-		path: '/*',
-		meta: {
-			title: '错误页面',
-		},
-		redirect: '/error/404',
-	},
-];
-
-const layouts: IRoute[] = [
-	{
-		path: '/user',
-		component: React.lazy(() => import('@/layout/UserLayout')),
-		meta: {
-			title: '用户路由',
-		},
-		redirect: '/user/login',
-		children: [],
-	},
-	{
-		path: '/',
-		component: React.lazy(() => import('@/layout/BasicLayout')),
-		meta: {
-			title: '系统路由',
-		},
-		redirect: '/home',
-		children: pages,
-	},
-];
-
-export default layouts;
+].concat([
+	{ path: '/404', name: 'notFound', component: Page404 },
+	{ path: '/401', name: 'noPower', component: Page401 },
+]);

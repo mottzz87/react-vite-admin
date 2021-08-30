@@ -1,27 +1,35 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 00:52:36
- * @LastEditTime: 2021-08-29 02:49:08
+ * @LastEditTime: 2021-08-30 23:08:41
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\App.tsx
  */
 import { Spin } from 'antd';
 import React, { Suspense } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-
-import Authority from '@/layout/Authority';
-import BasicLayout from '@/layout/BasicLayout';
-import UserLayout from '@/layout/UserLayout';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import useStore from '@/store/useStore';
+import Login from '@/pages/Login'
+import Layout from '@/layout';
 
 const App = () => {
+  const { user } = useStore((state) => ({ ...state }))
   return (
     <Suspense fallback={<Spin size="large" className="layout__loading" />}>
       <Router>
         <Switch>
-          <Route exact path="/" component={Authority}></Route>
-          <Route path="/user" component={UserLayout}></Route>
-          <Route path="/home" component={BasicLayout}></Route>
+          <Route exact path="/login" component={Login} />
+          <Route
+            path="/"
+            render={() => {
+              if (!user?.token) {
+                return <Redirect to="/login" />;
+              } else {
+                return <Layout />;
+              }
+            }}
+          />
         </Switch>
       </Router>
     </Suspense>

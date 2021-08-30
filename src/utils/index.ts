@@ -1,12 +1,13 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-29 01:03:57
- * @LastEditTime: 2021-08-29 01:51:06
+ * @LastEditTime: 2021-08-29 03:31:18
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\utils\index.ts
  */
 
+import { IRoute } from '@/routes';
 import { isObject } from '@/utils/is';
 
 /**
@@ -70,4 +71,29 @@ export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
 			: (src[key] = target[key]);
 	}
 	return src;
+}
+
+/**
+ * @description: // 根据某个属性值从MenuList查找拥有该属性值的menuItem
+ * @param {*} menuList
+ * @param {*} key
+ * @param {*} value
+ * @return {*}
+ */
+export function getMenuItemByProperty<T = any>(
+	menuList: IRoute[],
+	key: string | number,
+	value: any
+): T {
+	let stack = menuList;
+	while (stack.length) {
+		let cur = stack.shift();
+		if (cur.children && cur.children.length > 0) {
+			stack = cur.children.concat(stack);
+		}
+		if (value === cur[key]) {
+			res = cur;
+		}
+	}
+	return res;
 }

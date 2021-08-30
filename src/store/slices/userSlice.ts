@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 22:19:15
- * @LastEditTime: 2021-08-29 00:11:53
+ * @LastEditTime: 2021-08-30 23:53:57
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\store\slices\userSlice.ts
@@ -10,7 +10,6 @@ import { GetState, SetState } from 'zustand';
 import { createHashHistory } from 'history';
 import { MyState } from '../useStore';
 import { login } from '@/api/user';
-import { persist } from 'zustand/middleware';
 import { sleep } from '../sleep';
 const history = createHashHistory();
 
@@ -44,13 +43,13 @@ const createUserSlice = (set: SetState<MyState>, get: GetState<MyState>) => ({
 	list: [],
 	loading: false,
 	editItem: undefined,
+	menus: [],
 
 	login: async (val: { username: string; password: string }) => {
 		set({ loading: true });
 		const res = await login(val);
 		if (res.code === 0) {
-			set({ user: res.data });
-			set({ loading: false });
+			set({ user: { ...res.data }, loading: false });
 			history.push('/home');
 		}
 	},

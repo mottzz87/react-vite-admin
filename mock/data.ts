@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 17:18:42
- * @LastEditTime: 2021-08-28 18:21:34
+ * @LastEditTime: 2021-08-29 21:42:03
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\mock\data.ts
@@ -54,7 +54,7 @@ const menus = [
 		id: 2,
 		title: '系统管理',
 		icon: 'icon-setting',
-		url: '/system',
+		path: '/about',
 		parent: null,
 		desc: '系统管理目录分支',
 		sorts: 1,
@@ -63,7 +63,7 @@ const menus = [
 		id: 3,
 		title: '用户管理',
 		icon: 'icon-user',
-		url: '/system/useradmin',
+		path: '/about/1',
 		parent: 2,
 		desc: '系统管理/用户管理',
 		sorts: 0,
@@ -72,7 +72,7 @@ const menus = [
 		id: 4,
 		title: '角色管理',
 		icon: 'icon-team',
-		url: '/system/roleadmin',
+		path: '/home/2',
 		parent: 2,
 		desc: '系统管理/角色管理',
 		sorts: 1,
@@ -81,7 +81,7 @@ const menus = [
 		id: 5,
 		title: '权限管理',
 		icon: 'icon-safetycertificate',
-		url: '/system/poweradmin',
+		path: '/about/3',
 		parent: 2,
 		desc: '系统管理/权限管理',
 		sorts: 2,
@@ -90,7 +90,7 @@ const menus = [
 		id: 6,
 		title: '菜单管理',
 		icon: 'icon-appstore',
-		url: '/system/menuadmin',
+		path: '/home/4',
 		parent: 2,
 		desc: '系统管理/菜单管理',
 		sorts: 3,

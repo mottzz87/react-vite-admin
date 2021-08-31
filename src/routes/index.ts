@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 14:58:57
- * @LastEditTime: 2021-09-01 01:10:25
+ * @LastEditTime: 2021-09-01 03:28:01
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\routes\index.ts
@@ -18,7 +18,7 @@ const About = Loadable(() => import('@/pages/About'));
 export const routes: IRoute[] = [
 	{ path: '/home', name: 'home', component: Home },
 	{ path: '/system/menu', name: 'systemMenu', component: About },
-	{ path: '/permission/demo1', name: 'permissionDemo1', component: Demo1 },
+	{ path: '/permission/demo1', name: 'permissionDemo1', component: About },
 	{ path: '/permission/demo2', name: 'permissionDemo2', component: Demo2 },
 	{ path: '/permission/demo3', name: 'permissionDemo3', component: Demo3 },
 	{ path: '/components/demo1', name: 'componentsDemo1', component: Demo1 },

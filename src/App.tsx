@@ -1,20 +1,28 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 00:52:36
- * @LastEditTime: 2021-08-31 23:18:08
+ * @LastEditTime: 2021-09-01 02:41:16
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\App.tsx
  */
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Spin } from 'antd';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import useStore from '@/store/useStore';
 import Login from '@/pages/Login'
 import Layout from '@/layout/BasicLayout';
+import setIntroduction from './utils/setIconfont';
+
 
 const App = () => {
   const { user } = useStore((state) => ({ ...state }))
+
+  useEffect(() => {
+    setIntroduction.jsCdn()
+    setIntroduction.cssCdn()
+  });
+  
   return (
     <Suspense fallback={<Spin size="large" className="layout__loading" />}>
       <Router>

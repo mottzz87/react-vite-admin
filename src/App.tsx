@@ -1,13 +1,13 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 00:52:36
- * @LastEditTime: 2021-08-31 02:21:14
+ * @LastEditTime: 2021-08-31 23:18:08
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\App.tsx
  */
-import { Spin } from 'antd';
 import React, { Suspense } from 'react';
+import { Spin } from 'antd';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import useStore from '@/store/useStore';
 import Login from '@/pages/Login'
@@ -25,9 +25,8 @@ const App = () => {
             render={() => {
               if (!user?.token) {
                 return <Redirect to="/login" />;
-              } else {
-                return <Layout />;
               }
+              return <Layout />;
             }}
           />
         </Switch>

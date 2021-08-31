@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 14:58:57
- * @LastEditTime: 2021-08-30 23:40:03
+ * @LastEditTime: 2021-09-01 01:10:25
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\routes\index.ts
@@ -25,6 +25,7 @@ export const routes: IRoute[] = [
 	{ path: '/components/demo2', name: 'componentsDemo2', component: Demo2 },
 	{ path: '/components/demo3', name: 'componentsDemo3', component: Demo3 },
 
+	{ path: '/charts', name: 'componentsDemo1', component: Demo3 },
 	{ path: '/charts/demo1', name: 'componentsDemo1', component: Demo1 },
 	{ path: '/charts/demo2', name: 'componentsDemo2', component: Demo2 },
 	{ path: '/charts/demo3', name: 'componentsDemo3', component: Demo3 },

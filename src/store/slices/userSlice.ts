@@ -1,16 +1,19 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 22:19:15
- * @LastEditTime: 2021-08-30 23:53:57
+ * @LastEditTime: 2021-08-31 23:03:09
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\store\slices\userSlice.ts
  */
+import { message } from 'antd';
 import { GetState, SetState } from 'zustand';
 import { createHashHistory } from 'history';
 import { MyState } from '../useStore';
 import { login } from '@/api/user';
 import { sleep } from '../sleep';
+import { IMG_BASE } from '@/api/config';
+import { getPageQuery } from '@/utils';
 const history = createHashHistory();
 
 // 模拟列表假数据
@@ -49,8 +52,31 @@ const createUserSlice = (set: SetState<MyState>, get: GetState<MyState>) => ({
 		set({ loading: true });
 		const res = await login(val);
 		if (res.code === 0) {
-			set({ user: { ...res.data }, loading: false });
-			history.push('/home');
+			set({
+				user: { ...res.data, avatar: `${IMG_BASE}/user/photo.jpg` },
+				loading: false,
+			});
+			const urlParams = new URL(window.location.href);
+			const params = getPageQuery();
+			message.success('🎉 🎉 🎉  登录成功！');
+
+			let { redirect } = params as { redirect: string };
+			if (redirect) {
+				const redirectUrlParams = new URL(redirect);
+				if (redirectUrlParams.origin === urlParams.origin) {
+					redirect = redirect.substr(urlParams.origin.length);
+					if (window.routerBase !== '/') {
+						redirect = redirect.replace(window.routerBase, '/');
+					}
+					if (redirect.match(/^\/.*#/)) {
+						redirect = redirect.substr(redirect.indexOf('#') + 1);
+					}
+				} else {
+					window.location.href = '/';
+					return;
+				}
+			}
+			history.replace(redirect || '/');
 		}
 	},
 

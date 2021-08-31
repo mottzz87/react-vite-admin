@@ -1,35 +1,34 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-29 01:03:57
- * @LastEditTime: 2021-08-29 03:31:18
+ * @LastEditTime: 2021-08-31 22:52:27
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\utils\index.ts
  */
 
-import { IRoute } from '@/routes';
 import { isObject } from '@/utils/is';
 
+import { stringify, parse } from 'qs';
+
 /**
- * Add the object as a parameter to the URL
- * @param baseUrl url
- * @param obj
- * @returns {string}
- * eg:
- *  let obj = {a: '3', b: '4'}
- *  setObjToUrlParams('www.baidu.com', obj)
- *  ==>www.baidu.com?a=3&b=4
+ * @description: eg: url => obj
+ * @param {*}
+ * @return {*} obj
  */
-export function setObjToUrlParams(baseUrl: string, obj: any): string {
-	let parameters = '';
-	for (const key in obj) {
-		parameters += key + '=' + encodeURIComponent(obj[key]) + '&';
-	}
-	parameters = parameters.replace(/&$/, '');
-	return /\?$/.test(baseUrl)
-		? baseUrl + parameters
-		: baseUrl.replace(/\/?$/, '?') + parameters;
-}
+export const getPageQuery = () => parse(window.location.href.split('?')[1]);
+
+/**
+ * @description: eg: obj => url
+ * @param {string} baseUrl
+ * @param {any} obj
+ * @return {*} string
+ */
+export const getQueryUrl = (baseUrl: string, obj: any) => {
+	baseUrl = baseUrl || window.location.href;
+	const hyphen = /\?/.test(baseUrl) ? '&' : '?';
+	return baseUrl + hyphen + stringify(obj);
+};
 
 /**
  * @description: window.open
@@ -71,29 +70,4 @@ export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
 			: (src[key] = target[key]);
 	}
 	return src;
-}
-
-/**
- * @description: // 根据某个属性值从MenuList查找拥有该属性值的menuItem
- * @param {*} menuList
- * @param {*} key
- * @param {*} value
- * @return {*}
- */
-export function getMenuItemByProperty<T = any>(
-	menuList: IRoute[],
-	key: string | number,
-	value: any
-): T {
-	let stack = menuList;
-	while (stack.length) {
-		let cur = stack.shift();
-		if (cur.children && cur.children.length > 0) {
-			stack = cur.children.concat(stack);
-		}
-		if (value === cur[key]) {
-			res = cur;
-		}
-	}
-	return res;
 }

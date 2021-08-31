@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-29 17:29:11
- * @LastEditTime: 2021-08-29 17:33:49
+ * @LastEditTime: 2021-08-31 22:32:35
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\utils\common.ts
@@ -72,8 +72,7 @@ export const getFirstRoute = (routes: Array<IRoute>): IRoute | any => {
 		const route = routes[i];
 		if (!route.children) {
 			return route;
-		}
-		if (route.children && route.children.length) {
+		} else if (route?.children?.length) {
 			return getFirstRoute(route.children);
 		}
 	}

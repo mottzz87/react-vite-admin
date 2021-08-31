@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-30 23:09:49
- * @LastEditTime: 2021-08-31 02:36:32
+ * @LastEditTime: 2021-09-01 02:07:40
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\routes\menus.ts
@@ -10,10 +10,10 @@
 import { IRouteBase } from '#/types/router';
 
 export interface IMenuConfig {
-	id?: string | number;
 	name: string;
 	path: string;
 	icon?: string;
+	key?: string;
 	roles?: string[];
 	meta?: IRouteBase;
 	children?: IMenuConfig[];
@@ -21,45 +21,49 @@ export interface IMenuConfig {
 
 const menus: IMenuConfig[] = [
 	{
-		id: 1,
 		name: '首页',
 		path: '/home',
+		key: '/home',
 		icon: 'home',
 		roles: ['admin', 'editor', 'guest'],
 	},
 	{
-		id: 2,
 		name: '权限测试',
 		path: '/permission',
+		key: '/permission',
 		icon: 'lock',
 		children: [
 			{
 				name: 'admin页面',
 				path: '/permission/demo1',
+				key: '/permission/demo1',
 				roles: ['admin'],
 			},
 			{
 				name: 'guest页面',
 				path: '/permission/demo2',
+				key: '/permission/demo2',
 				roles: ['guest'],
 			},
 			{
 				name: 'editor页面',
 				path: '/permission/demo3',
+				key: '/permission/demo3',
 				roles: ['editor'],
 			},
 		],
 	},
 	{
-		id: 3,
 		name: '组件',
 		path: '/components',
+		key: '/components',
 		icon: 'appstore',
 		roles: ['admin', 'editor'],
 		children: [
 			{
 				name: '富文本',
 				path: '/components/demo1',
+				key: '/components/demo1',
 				roles: ['admin', 'editor'],
 			},
 			{
@@ -75,7 +79,6 @@ const menus: IMenuConfig[] = [
 		],
 	},
 	{
-		id: 4,
 		name: '图表',
 		path: '/charts',
 		icon: 'area-chart',
@@ -99,7 +102,6 @@ const menus: IMenuConfig[] = [
 		],
 	},
 	{
-		id: 5,
 		name: '路由嵌套',
 		path: '/nested',
 		icon: 'cluster',
@@ -130,4 +132,37 @@ const menus: IMenuConfig[] = [
 		],
 	},
 ];
+
+// const menus: IMenuConfig[] = [
+// 	{
+// 		path: '/',
+// 		name: '首页',
+// 		children: [
+// 			{
+// 				path: '/permission',
+// 				name: 'one',
+// 				children: [
+// 					{
+// 						path: '/permission/demo2',
+// 						name: 'two',
+// 					},
+// 				],
+// 			},
+// 			{
+// 				path: '/charts',
+// 				name: 'one',
+// 				children: [
+// 					{
+// 						path: '/charts/demo1',
+// 						name: 'two',
+// 					},
+// 				],
+// 			},
+// 		],
+// 	},
+// 	{
+// 		path: '/home',
+// 		name: 'demo',
+// 	},
+// ];
 export default menus;

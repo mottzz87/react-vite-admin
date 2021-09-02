@@ -1,16 +1,17 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-29 02:58:09
- * @LastEditTime: 2021-08-29 12:55:47
+ * @LastEditTime: 2021-09-02 23:53:24
  * @LastEditors: Vane
  * @Description: 
- * @FilePath: \react-vite\src\layout\index.tsx
+ * @FilePath: \react-vite\src\layout\CustomLayout.tsx
  */
 
 import { Layout, Spin } from 'antd';
 import React, { useEffect, lazy } from 'react';
 import history from '@/utils/history';
 import { RouteComponentProps, Switch, withRouter } from 'react-router-dom';
+import { useRoutes } from "react-router-dom";
 
 import Header from './components/Header';
 import Sider from './components/Sider';
@@ -35,4 +36,4 @@ const BasicLayout: React.FC<RouteComponentProps> = () => {
   );
 };
 
-export default withRouter(BasicLayout);
+export default useRoutes(BasicLayout);

@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 14:58:57
- * @LastEditTime: 2021-09-01 03:28:01
+ * @LastEditTime: 2021-09-02 08:46:46
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\routes\index.ts
@@ -14,26 +14,18 @@ const Page401 = Loadable(() => import('@/pages/error/401'));
 
 const Home = Loadable(() => import('@/pages/Home'));
 const About = Loadable(() => import('@/pages/About'));
+const IconFont = Loadable(() => import('@/pages/IconFont'));
 
 export const routes: IRoute[] = [
 	{ path: '/home', name: 'home', component: Home },
-	{ path: '/system/menu', name: 'systemMenu', component: About },
-	{ path: '/permission/demo1', name: 'permissionDemo1', component: About },
-	{ path: '/permission/demo2', name: 'permissionDemo2', component: Demo2 },
-	{ path: '/permission/demo3', name: 'permissionDemo3', component: Demo3 },
+	{ path: '/about', name: 'about', component: About },
+	{ path: '/iconfont', name: 'iconfont', component: IconFont },
 	{ path: '/components/demo1', name: 'componentsDemo1', component: Demo1 },
 	{ path: '/components/demo2', name: 'componentsDemo2', component: Demo2 },
 	{ path: '/components/demo3', name: 'componentsDemo3', component: Demo3 },
-
-	{ path: '/charts', name: 'componentsDemo1', component: Demo3 },
-	{ path: '/charts/demo1', name: 'componentsDemo1', component: Demo1 },
-	{ path: '/charts/demo2', name: 'componentsDemo2', component: Demo2 },
-	{ path: '/charts/demo3', name: 'componentsDemo3', component: Demo3 },
-
-	{ path: '/nested/menu1/demo1', name: 'componentsDemo1', component: Demo1 },
 	{
-		path: '/nested/menu1/demo2/demo2-1',
-		name: 'componentsDemo2',
+		path: '/components/demo1/demo2/demo2-1',
+		name: 'componentsDemo4',
 		component: Demo2,
 	},
 ].concat([

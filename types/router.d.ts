@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-29 01:12:48
- * @LastEditTime: 2021-08-30 23:15:50
+ * @LastEditTime: 2021-09-02 22:23:02
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\types\router.d.ts

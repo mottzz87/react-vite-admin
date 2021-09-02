@@ -1,16 +1,16 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-31 02:20:23
- * @LastEditTime: 2021-09-01 01:53:20
+ * @LastEditTime: 2021-09-02 22:17:19
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\layout\BasicLayout.tsx
  */
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import type { BasicLayoutProps as ProLayoutProps, MenuDataItem } from '@ant-design/pro-layout';
 import ProLayout, { ProBreadcrumb } from '@ant-design/pro-layout';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, SmileOutlined, HeartOutlined, FrownOutlined } from '@ant-design/icons';
 import RightContent from './components/Header/RightContent'
 import history from '@/utils/history';
 import menus from '@/routes/menus'
@@ -20,6 +20,14 @@ import Footer from './components/Footer';
 import { IMG_BASE } from '@/api/config';
 import defaultSettings from '#/config/defaultSettings'
 
+
+
+
+const IconMap: { [key: string]: React.ReactNode } = {
+  smile: <SmileOutlined />,
+  heart: <HeartOutlined />,
+  frown: <FrownOutlined />,
+};
 
 type IRouter = {
   path: string,
@@ -35,6 +43,7 @@ export type BasicLayoutProps = {
 } & ProLayoutProps;
 
 const BasicLayout: React.FC<ProLayoutProps> = (props) => {
+
   const { user } = useStore((state) => ({ ...state }))
 
   const [collapsed, setCollapsed] = useState(false);
@@ -74,9 +83,27 @@ const BasicLayout: React.FC<ProLayoutProps> = (props) => {
     });
   };
 
+  const loopMenuItem = (menus?: MenuDataItem[]): MenuDataItem[] => {
+    if (!menus) return [];
+
+    const m = menus.map(({ icon, children, ...item }) => ({
+      ...item,
+      icon: icon && IconMap[icon as string],
+      children: children && loopMenuItem(children),
+    }));
+
+    return m;
+  };
+
   const actionRef = useRef<{
     reload: () => void;
   }>();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      history.push("/dashboard");
+    }
+  }, []);
 
   return (
     <ProLayout
@@ -93,7 +120,7 @@ const BasicLayout: React.FC<ProLayoutProps> = (props) => {
       menu={{
         request: async () => {
           await waitTime(800);
-          return menus;
+          return loopMenuItem(menus);
         },
       }}
       
@@ -106,7 +133,9 @@ const BasicLayout: React.FC<ProLayoutProps> = (props) => {
               fontSize: '16px',
             }}
           >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            <span id="sidebar-trigger">
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </span>
           </div>
         );
       }}

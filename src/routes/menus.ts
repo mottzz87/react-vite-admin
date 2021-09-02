@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-30 23:09:49
- * @LastEditTime: 2021-09-02 08:47:54
+ * @LastEditTime: 2021-09-02 22:18:29
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\routes\menus.ts
@@ -29,18 +29,12 @@ const menus: IMenuConfig[] = [
 		name: '组件',
 		children: [
 			{
-				path: '/components',
-				name: 'one',
-				children: [
-					{
-						path: '/components/demo2',
-						name: 'two',
-					},
-					{
-						path: '/components/demo3',
-						name: 'three',
-					},
-				],
+				path: '/components/demo2',
+				name: 'two',
+			},
+			{
+				path: '/components/demo3',
+				name: 'three',
 			},
 		],
 	},

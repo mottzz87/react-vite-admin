@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 00:52:36
- * @LastEditTime: 2021-08-31 02:31:05
+ * @LastEditTime: 2021-09-02 21:03:41
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\vite.config.ts
@@ -46,6 +46,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 		VITE_PUBLIC_PATH,
 		VITE_PROXY,
 		VITE_DROP_CONSOLE,
+		VITE_DROP_DEBUGGER,
 	} = viteEnv;
 
 	return {
@@ -65,6 +66,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 					keep_infinity: true,
 					// Used to delete console in production environment
 					drop_console: VITE_DROP_CONSOLE,
+					drop_debugger: VITE_DROP_DEBUGGER,
 				},
 			},
 			brotliSize: false,

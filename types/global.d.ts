@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 03:07:29
- * @LastEditTime: 2021-08-28 15:48:26
+ * @LastEditTime: 2021-09-02 21:03:30
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\types\global.d.ts
@@ -24,6 +24,7 @@ declare interface ViteEnv {
 	VITE_GLOB_APP_SHORT_NAME: string;
 	VITE_USE_CDN: boolean;
 	VITE_DROP_CONSOLE: boolean;
+	VITE_DROP_DEBUGGER: boolean;
 	VITE_BUILD_COMPRESS: 'gzip' | 'brotli' | 'none';
 	VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE: boolean;
 	VITE_LEGACY: boolean;

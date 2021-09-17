@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-31 20:36:24
- * @LastEditTime: 2021-09-01 19:09:33
+ * @LastEditTime: 2021-09-17 19:10:39
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\layout\components\Footer\index.tsx
@@ -20,8 +20,8 @@ export default function Footer() {
         {
           key: 'Vane',
           title: heart(),
-          href: '',
-          blankTarget: true,
+          href: '/#/home',
+          // blankTarget: true,
         },
       ]}
     />

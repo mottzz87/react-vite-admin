@@ -1,15 +1,16 @@
 /*
  * @Author: Vane
  * @Date: 2021-09-01 19:11:30
- * @LastEditTime: 2021-09-01 19:11:30
+ * @LastEditTime: 2021-09-17 21:36:01
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\pages\IconFont\index.tsx
  */
 import React, { useEffect, useState } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Card, Popover, message } from 'antd';
 import clss from 'classnames'
-import cls from 'index.module.less'
+import onCopyClick from '@/utils/clipboard';
+import styles from './index.module.less'
 import initIconfont from '@/utils/getStyleSheets'
 
 const IconFont: React.FC = () => {
@@ -18,34 +19,35 @@ const IconFont: React.FC = () => {
 
   const getList = async () => {
     const list = await initIconfont.ali()
+    console.log(new Date())
     setSheetsIconList(list)
   }
+  
   useEffect(() => {
-    getList()
+    setTimeout(() => {
+      getList()
+    }, 100)
   }, [])
 
-  const onCopyClick = (item: string) => {
-    console.log(item)
-  }
-  
   return (
-      <Row>
-        {
-          sheetsIconList.map((v, i) => (
-            <Col xs={12} sm={8} md={6} lg={4} xl={2} key={i}>
-              <div className="iconfont-warp" onClick={() => onCopyClick(v)}>
-                <div className="flex-margin">
-                  <div className="iconfont-warp-value">
-                    <i className={clss(v, 'iconfont')}/>
-                  </div>
-                  <div className="iconfont-warp-label mt10">{ v }</div>
+    <Row gutter={[3, 3]}>
+      {
+        sheetsIconList.map((v, i) => (
+          <Col xs={12} sm={8} md={6} lg={4} xl={3} key={v}>
+            <Card hoverable onClick={(e) => onCopyClick(e, v)}>
+            <Popover placement="top" content={v}>
+              <div className={styles.iconWrapper}>
+                <i className={clss(v, 'iconfont')}/>
+                <div className={styles.name}>
+                  {v}
                 </div>
               </div>
-            </Col>
-          ))
-        }
-      </Row>
-    
+              </Popover>
+            </Card>
+          </Col>
+        ))
+      }
+    </Row>
   )
 };
 

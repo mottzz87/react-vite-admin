@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-09-01 02:44:59
- * @LastEditTime: 2021-09-01 03:13:40
+ * @LastEditTime: 2021-09-17 21:41:37
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\utils\getStyleSheets.ts
@@ -20,23 +20,13 @@ const getAlicdnIconfont = async () => {
 				}
 			}
 			for (let i = 0, len = sheetsList.length; i < len; i++) {
-				for (
-					let j = 0, _len = sheetsList[i].cssRules.length;
-					j < _len;
-					j++
-				) {
-					if (
-						sheetsList[i].cssRules[j].selectorText?.indexOf(
-							'ant-icon'
-						) > -1
-					) {
+				let _len = sheetsList[i].cssRules.length;
+				for (let j = 0; j < _len; j++) {
+					let itemText = sheetsList[i].cssRules[j].selectorText;
+					if (itemText?.indexOf('icon-') > -1) {
 						sheetsIconList.push(
-							`${sheetsList[i].cssRules[j].selectorText
-								.substring(
-									1,
-									sheetsList[i].cssRules[j].selectorText
-										.length
-								)
+							`${itemText
+								.substring(1, itemText.length)
 								.replace(/\:\:before/gi, '')}`
 						);
 					}
@@ -61,25 +51,16 @@ const getAwesomeIconfont = () => {
 				}
 			}
 			for (let i = 0, len = sheetsList.length; i < len; i++) {
-				for (
-					let j = 0, _len = sheetsList[i].cssRules.length;
-					j < _len;
-					j++
-				) {
+				let _len = sheetsList[i].cssRules.length;
+				for (let j = 0; j < _len; j++) {
+					let itemText = sheetsList[i].cssRules[j].selectorText;
 					if (
-						sheetsList[i].cssRules[j].selectorText?.indexOf(
-							'.fa-'
-						) === 0 &&
-						sheetsList[i].cssRules[j].selectorText?.indexOf(',') ===
-							-1
+						itemText?.indexOf('.fa-') === 0 &&
+						itemText?.indexOf(',') === -1
 					) {
 						sheetsIconList.push(
-							`${sheetsList[i].cssRules[j].selectorText
-								.substring(
-									1,
-									sheetsList[i].cssRules[j].selectorText
-										.length
-								)
+							`${itemText
+								.substring(1, itemText.length)
 								.replace(/\:\:before/gi, '')}`
 						);
 					}
@@ -96,10 +77,6 @@ const initIconfont = {
 	// iconfont
 	ali: () => {
 		return getAlicdnIconfont();
-	},
-	// element plus
-	ele: () => {
-		return getElementPlusIconfont();
 	},
 	// fontawesome
 	awe: () => {

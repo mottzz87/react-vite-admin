@@ -11,7 +11,6 @@ import { Layout, Spin } from 'antd';
 import React, { useEffect, lazy } from 'react';
 import history from '@/utils/history';
 import { RouteComponentProps, Switch, withRouter } from 'react-router-dom';
-import { useRoutes } from "react-router-dom";
 
 import Header from './components/Header';
 import Sider from './components/Sider';
@@ -21,9 +20,9 @@ import useStore from '@/store/useStore';
 
 const BasicLayout: React.FC<RouteComponentProps> = () => {
   const { loading, user } = useStore((state) => ({ ...state }));
-  useEffect(() => {
-    history.push('/home');
-  }, [user]);
+  // useEffect(() => {
+  //   history.push('/home');
+  // }, [user]);
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -36,4 +35,4 @@ const BasicLayout: React.FC<RouteComponentProps> = () => {
   );
 };
 
-export default useRoutes(BasicLayout);
+export default withRouter(BasicLayout);

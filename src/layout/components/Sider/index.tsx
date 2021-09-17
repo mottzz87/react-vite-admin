@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 16:32:49
- * @LastEditTime: 2021-08-31 01:47:51
+ * @LastEditTime: 2021-09-17 21:23:39
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\layout\components\Sider\index.tsx
@@ -10,9 +10,11 @@ import { Layout, Menu, Typography } from 'antd';
 import Icon from '@ant-design/icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import React, {useState} from 'react';
+import clss from 'classnames';
 // import useStore from '@/store/useStore';
-import cls from './index.module.less';
+import styles from './index.module.less';
 import history from '@/utils/history'
+import Logo from './Logo'
 import menuMap, { IMenuConfig } from '@/routes/menus'
 const { Sider } = Layout;
 const { Item, SubMenu } = Menu;
@@ -22,11 +24,10 @@ const SiderBar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false)
   const [menuList, setMenus] = useState(menuMap)
 
-  const renderIcon = (menu: IMenuConfig) =>
-    typeof menu.icon === 'function' ? menu?.icon() : <Icon type={menu.icon || 'icon-tuichu'} />;
+  const renderIcon = (menu: IMenuConfig) => <i className={clss(menu.icon, 'iconfont')} />;
 
   const renderSubMenu = (menu: IMenuConfig) => (
-    <SubMenu key={menu.path} title={menu.title} icon={renderIcon(menu)}>
+    <SubMenu key={menu.path} title={menu.name} icon={renderIcon(menu)}>
       {renderMenuItem(menu.children || [])}
     </SubMenu>
   );
@@ -35,8 +36,8 @@ const SiderBar: React.FC = () => {
     return menus?.map(menu => {
       if (menu.children && menu.children.length) return renderSubMenu(menu);
       return (
-        <Item key={menu.path} title={menu.title} >
-          {menu.title}
+        <Item key={menu.path} title={menu.name} >
+          {menu.name}
         </Item>
       );
     });
@@ -98,12 +99,12 @@ const SiderBar: React.FC = () => {
   
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
-      <div className={cls.menu_logo}>
-        <Typography.Title className={cls.logo_title} level={5}>
-          Logo
+      <div className={styles.menu_logo}>
+        <Typography.Title className={styles.logo_title} level={5}>
+          <Logo />
         </Typography.Title>
       </div>
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['0']} inlineCollapsed={collapsed} onClick={handleClickMenu}>
+      <Menu theme="dark" mode="inline" onClick={handleClickMenu}>
         { renderMenuItem(menuList) }
       </Menu>
     </Sider>

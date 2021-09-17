@@ -1,10 +1,10 @@
 /*
  * @Author: Vane
  * @Date: 2021-07-05 14:50:00
- * @LastEditTime: 2021-07-05 15:53:09
+ * @LastEditTime: 2021-09-04 13:31:26
  * @LastEditors: Vane
  * @Description:
- * @FilePath: \vite-react\src\pages\error\401\index.tsx
+ * @FilePath: \react-vite\src\pages\error\401\index.tsx
  */
 import React from 'react';
 import { Button } from 'antd';

@@ -1,18 +1,10 @@
 /*
-
-
  * @Author: Vane
- *
- @Date: 2021-07-04 17:11:57
-
- * @LastEditTime: 2021-08-30 00:44:46
-
+ * @Date: 2021-08-31 20:42:44
+ * @LastEditTime: 2021-09-17 20:01:18
  * @LastEditors: Vane
-
- * @Description:
-
+ * @Description: 
  * @FilePath: \react-vite\src\pages\Login\index.tsx
-
  */
 
 import React, { FC } from 'react';
@@ -29,7 +21,7 @@ import useStore from '@/store/useStore';
 
 import style from './index.module.less';
 
-import LoginImg from '@/assets/imgs/login/login.png';
+import LoginImg from '@/assets/imgs/login/login.svg';
 
 import { Local } from '@/utils/storage';
 
@@ -37,7 +29,7 @@ import { ACCOUNT_INFO_KEY } from '@/enums/cacheEnum';
 
 import { getFirstRoute } from '@/utils/common';
 
-import {routes} from '@/routes';
+import menus from '@/routes/menus';
 
 const layout = {
   labelCol: { span: 6 },
@@ -63,7 +55,7 @@ const Login: FC<LoginProps> = () => {
       Local.remove(ACCOUNT_INFO_KEY);
     }
 
-    const homePath = getFirstRoute(routes).path;
+    const homePath = getFirstRoute(menus).path;
 
     if (username === 'admin' && password === '123456') {
       return login({ username, password });

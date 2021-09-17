@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-29 17:29:11
- * @LastEditTime: 2021-08-31 22:32:35
+ * @LastEditTime: 2021-09-17 19:58:25
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\utils\common.ts
@@ -34,13 +34,16 @@ export const handleNullData = (
  * 树结构拍平
  * @param tree
  */
-export const treeToArray = (tree: unknown[]): unknown[] => {
+export const treeToArray = (
+	tree: unknown[],
+	proper: string = 'children'
+): unknown[] => {
 	const array: unknown[] = [];
 	const getChildren = (node: unknown[]) => {
 		node.forEach((item: any) => {
-			if (item.children) {
+			if (item[proper]) {
 				getChildren(item.children);
-				array.push({ ...item, children: undefined });
+				array.push({ ...item, [proper]: undefined });
 			} else {
 				array.push(item);
 			}
@@ -64,16 +67,16 @@ export const formatIdCard = (value: string | undefined): string => {
 
 /**
  * 获取第一个非空路由
- * @param routes
+ * @param menus
  * @returns {*}
  */
-export const getFirstRoute = (routes: Array<IRoute>): IRoute | any => {
-	for (let i = 0; i < routes.length; i++) {
-		const route = routes[i];
-		if (!route.children) {
-			return route;
-		} else if (route?.children?.length) {
-			return getFirstRoute(route.children);
+export const getFirstRoute = (menus: Array<IRoute>): IRoute | any => {
+	for (let i = 0; i < menus.length; i++) {
+		const menu = menus[i];
+		if (!menu.children) {
+			return menu;
+		} else if (menu?.children?.length) {
+			return getFirstRoute(menu.children);
 		}
 	}
 };

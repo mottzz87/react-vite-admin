@@ -1,0 +1,67 @@
+@import (reference) 'antd/es/style/themes/default.less';
+@import './variables.less';
+
+.ant-layout {
+	min-height: 100vh;
+}
+
+.ant-layout-footer {
+	text-align: center;
+}
+
+.colorWeak {
+	filter: invert(80%);
+}
+
+@media (max-width: @screen-xs) {
+	.ant-table {
+		width: 100%;
+		overflow-x: auto;
+		&-thead > tr,
+		&-tbody > tr {
+			> th,
+			> td {
+				white-space: pre;
+				> span {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+// 兼容IE11
+@media screen and(-ms-high-contrast: active), (-ms-high-contrast: none) {
+	body .ant-design-pro > .ant-layout {
+		min-height: 100vh;
+	}
+}
+
+.ant-pro-sider-layout-side .ant-pro-sider-logo {
+	img {
+		width: 32px;
+	}
+}
+
+// 菜单选中
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+	background-color: unset !important;
+	.ant-menu-title-content {
+		.ant-pro-menu-item {
+			.anticon,
+			.ant-pro-menu-item-title {
+				color: @primary-color;
+			}
+		}
+	}
+}
+
+// 菜单hover
+.ant-menu-dark .ant-menu-item:hover,
+.ant-menu-dark .ant-menu-item-active,
+.ant-menu-dark .ant-menu-submenu-active,
+.ant-menu-dark .ant-menu-submenu-open,
+.ant-menu-dark .ant-menu-submenu-selected,
+.ant-menu-dark .ant-menu-submenu-title:hover {
+	color: @primary-color;
+}

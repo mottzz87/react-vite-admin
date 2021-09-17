@@ -1,14 +1,14 @@
 /*
  * @Author: Vane
  * @Date: 2021-09-01 01:18:56
- * @LastEditTime: 2021-09-01 02:30:04
+ * @LastEditTime: 2021-09-17 19:17:26
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\config\defaultSettings.ts
  */
 
-import { IMG_BASE } from '@/api/config';
 import { Settings as BasicLayoutProps } from '@ant-design/pro-layout';
+import { IMG_BASE } from '@/api/config';
 
 const Settings: BasicLayoutProps & {
 	pwa?: boolean;
@@ -24,7 +24,7 @@ const Settings: BasicLayoutProps & {
 	colorWeak: false,
 	pwa: false,
 	logo: `${IMG_BASE}/logo/logo-text.svg`,
-	iconfontUrl: '',
+	iconfontUrl: '//at.alicdn.com/t/font_2820718_y01xvox4xzl.js',
 	title: 'React-Admin',
 	collapsedButtonRender: false,
 };

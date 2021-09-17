@@ -1,33 +1,24 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-31 02:20:23
- * @LastEditTime: 2021-09-02 22:42:02
+ * @LastEditTime: 2021-09-18 01:13:33
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\layout\BasicLayout.tsx
  */
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, Children } from 'react';
 import { Link } from 'react-router-dom';
 import type { BasicLayoutProps as ProLayoutProps, MenuDataItem } from '@ant-design/pro-layout';
 import ProLayout, { ProBreadcrumb } from '@ant-design/pro-layout';
-import { MenuFoldOutlined, MenuUnfoldOutlined, SmileOutlined, HeartOutlined, FrownOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import RightContent from './components/Header/RightContent'
 import history from '@/utils/history';
-import menus from '@/routes/menus'
+import menus from '@/routes/menus';
 import useStore from '@/store/useStore';
 import Content from './components/Content';
 import Footer from './components/Footer';
-import { IMG_BASE } from '@/api/config';
 import defaultSettings from '#/config/defaultSettings'
-
-
-
-
-const IconMap: { [key: string]: React.ReactNode } = {
-  smile: <SmileOutlined />,
-  heart: <HeartOutlined />,
-  frown: <FrownOutlined />,
-};
+import cls from './BasicLayout.module.less'
 
 type IRouter = {
   path: string,
@@ -48,12 +39,8 @@ const BasicLayout: React.FC<ProLayoutProps> = (props) => {
 
   const [collapsed, setCollapsed] = useState(false);
 
-  const pageChange = () => {
-    // 没有token去登录
-    if (!user.token) {
-      history.push('/login');
-    }
-  }
+  const [pathname, setPathname] = useState('/')
+
   const breadRender = (routers: Array<IRouter>) => {
     return [
       {
@@ -88,31 +75,42 @@ const BasicLayout: React.FC<ProLayoutProps> = (props) => {
 
     const m = menus.map(({ icon, children, ...item }) => ({
       ...item,
-      icon: icon && IconMap[icon as string],
+      icon,
       children: children && loopMenuItem(children),
     }));
-
     return m;
   };
+
+  const headerContentRender = () => {
+    return (
+      <div className={cls.headerContent}>
+        <span id="sidebar-trigger" className={cls.trigger} onClick={() => setCollapsed(!collapsed)}>
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </span>
+        <span className={cls.breadcrumb}>
+          <ProBreadcrumb />
+        </span>
+      </div>
+    );
+  }
 
   const actionRef = useRef<{
     reload: () => void;
   }>();
 
   useEffect(() => {
-    if (location.pathname === "/") {
-      history.push("/dashboard");
-    }
-  }, []);
+    
+    setPathname(location.hash.slice(1))
+
+  }, [location.hash]);
 
   return (
+
     <ProLayout
       {...{...defaultSettings, ...props, collapsed}}
       actionRef={actionRef}
-      // headerContentRender={() => <ProBreadcrumb />}
       rightContentRender={() => <RightContent />}
       onMenuHeaderClick={() => history.push('/home')}
-      onPageChange={() => pageChange()}
       onCollapse={setCollapsed}
       breadcrumbRender={(routers = []) => breadRender(routers)}
       menuItemRender={(menuItemProps, defaultDom) => menuItemRender(menuItemProps, defaultDom)}
@@ -123,22 +121,17 @@ const BasicLayout: React.FC<ProLayoutProps> = (props) => {
           return loopMenuItem(menus);
         },
       }}
-      
-      headerContentRender={() => {
-        return (
-          <div
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              cursor: 'pointer',
-              fontSize: '16px',
-            }}
-          >
-            <span id="sidebar-trigger">
-              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            </span>
-          </div>
+      itemRender={(route, params, routes, paths) => {
+        const first = routes.indexOf(route) === 0;
+        return first ? (
+          <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+        ) : (
+          <span>{route.breadcrumbName}</span>
         );
       }}
+      route={{routes: menus}}
+      location={{pathname}}
+      headerContentRender={() => headerContentRender()}
     >
       <Content />
     </ProLayout>

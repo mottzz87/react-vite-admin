@@ -1,12 +1,13 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 14:30:35
- * @LastEditTime: 2021-08-28 18:50:33
+ * @LastEditTime: 2021-09-04 14:20:39
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\build\vite\plugin\index.ts
  */
 import type { Plugin } from 'vite';
+import reactRefresh from '@vitejs/plugin-react-refresh';
 import { configLegacy } from './legacy';
 import { configPwaConfig } from './pwa';
 import { configMockPlugin } from './mock';
@@ -18,6 +19,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 	const { VITE_USE_IMAGEMIN, VITE_USE_MOCK, VITE_LEGACY } = viteEnv;
 
 	const vitePlugins: (Plugin | Plugin[])[] = [];
+
+	// @vitejsplugin-react-refresh
+	vitePlugins.push(reactRefresh());
 
 	// @vitejs/plugin-legacy
 	VITE_LEGACY && isBuild && vitePlugins.push(configLegacy());
@@ -33,7 +37,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
 	// The following plugins only work in the production environment
 	if (isBuild) {
-		//vite-plugin-imagemin
+		// vite-plugin-imagemin
 		VITE_USE_IMAGEMIN && vitePlugins.push(configImageminPlugin());
 
 		// vite-plugin-pwa

@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 00:52:36
- * @LastEditTime: 2021-09-01 02:41:16
+ * @LastEditTime: 2021-09-18 01:27:06
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\App.tsx
@@ -12,6 +12,7 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import useStore from '@/store/useStore';
 import Login from '@/pages/Login'
 import Layout from '@/layout/BasicLayout';
+import Content from '@/layout/components/Content'
 import setIntroduction from './utils/setIconfont';
 
 
@@ -34,7 +35,7 @@ const App = () => {
               if (!user?.token) {
                 return <Redirect to="/login" />;
               }
-              return <Layout />;
+              return <Layout/>;
             }}
           />
         </Switch>

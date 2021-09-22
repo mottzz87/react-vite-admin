@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-29 03:20:29
- * @LastEditTime: 2021-09-18 01:20:28
+ * @LastEditTime: 2021-09-22 09:39:39
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\layout\components\Content\index.tsx
@@ -28,10 +28,38 @@ const MyContent: React.FC = () => {
   useDidCache(() => {
     console.log('List cached 1')
   })
+
+  // map方法输出tree结构 优于递归
+  const test = () => {
+    let arr = [
+      {id: 1, name: '部门1', pid: 0},
+      {id: 2, name: '部门2', pid: 1},
+      {id: 3, name: '部门3', pid: 1},
+      {id: 4, name: '部门4', pid: 3},
+      {id: 5, name: '部门5', pid: 4},
+    ]
+    const obj = (arr) => {
+      return arr.reduce((t, c) => {
+        t[c.id] = {...c, children: []}
+        return t
+      }, {})
+    }
+    let tree = {}
+    let objData = obj(arr)
+    Object.values(objData).forEach(v => {
+      if(!objData[v.pid]){
+        tree = v
+      }else{
+        objData[v.pid].children.push(v)
+      }
+    })
+
+    console.log(22, objData, tree)
+  }
   return (
       <Content style={{ height: "calc(100% - 100px)" }}>
         <TransitionGroup>
-          <CSSTransition key={location.pathname} timeout={500} classNames="fade" exit={false}>
+          <CSSTransition key={location.pathname} timeout={500} classNames="fade" exit={false} unmountOnExit>
             <CacheSwitch location={location}>
               <Redirect exact from="/" to="/home" />
               { 

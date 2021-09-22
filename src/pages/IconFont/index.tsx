@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-09-01 19:11:30
- * @LastEditTime: 2021-09-17 21:36:01
+ * @LastEditTime: 2021-09-18 01:50:19
  * @LastEditors: Vane
  * @Description: 
  * @FilePath: \react-vite\src\pages\IconFont\index.tsx
@@ -19,10 +19,9 @@ const IconFont: React.FC = () => {
 
   const getList = async () => {
     const list = await initIconfont.ali()
-    console.log(new Date())
     setSheetsIconList(list)
   }
-  
+
   useEffect(() => {
     setTimeout(() => {
       getList()

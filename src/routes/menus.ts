@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-30 23:09:49
- * @LastEditTime: 2021-09-17 20:03:33
+ * @LastEditTime: 2021-09-18 01:53:09
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite\src\routes\menus.ts
@@ -36,21 +36,25 @@ const menus: IMenuConfig[] = [
 				path: '/components/demo2',
 				key: '/components/demo2',
 				name: 'two',
+				icon: 'icon-smile',
 			},
 			{
 				path: '/components/demo3',
 				key: '/components/demo3',
 				name: 'three',
+				icon: 'icon-shake',
 			},
 		],
 	},
 	{
 		path: '/iconfont',
 		name: '字体图标',
+		icon: 'icon-font-colors',
 	},
 	{
 		path: '/about',
 		name: '关于',
+		icon: 'icon-warning-circle',
 	},
 ];
 export default menus;

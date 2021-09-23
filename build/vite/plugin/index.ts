@@ -1,10 +1,10 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 14:30:35
- * @LastEditTime: 2021-09-04 14:20:39
+ * @LastEditTime: 2021-09-24 00:40:53
  * @LastEditors: Vane
  * @Description:
- * @FilePath: \react-vite\build\vite\plugin\index.ts
+ * @FilePath: \react-vite-admin\build\vite\plugin\index.ts
  */
 import type { Plugin } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';

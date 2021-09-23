@@ -1,10 +1,10 @@
 /*
  * @Author: Vane
  * @Date: 2021-09-01 01:18:56
- * @LastEditTime: 2021-09-17 19:17:26
+ * @LastEditTime: 2021-09-24 00:17:46
  * @LastEditors: Vane
  * @Description:
- * @FilePath: \react-vite\config\defaultSettings.ts
+ * @FilePath: \react-vite-admin\config\defaultSettings.ts
  */
 
 import { Settings as BasicLayoutProps } from '@ant-design/pro-layout';
@@ -26,7 +26,6 @@ const Settings: BasicLayoutProps & {
 	logo: `${IMG_BASE}/logo/logo-text.svg`,
 	iconfontUrl: '//at.alicdn.com/t/font_2820718_y01xvox4xzl.js',
 	title: 'React-Admin',
-	collapsedButtonRender: false,
 };
 
 export default Settings;

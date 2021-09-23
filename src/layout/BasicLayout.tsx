@@ -1,10 +1,10 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-31 02:20:23
- * @LastEditTime: 2021-09-18 01:13:33
+ * @LastEditTime: 2021-09-24 00:18:15
  * @LastEditors: Vane
  * @Description: 
- * @FilePath: \react-vite\src\layout\BasicLayout.tsx
+ * @FilePath: \react-vite-admin\src\layout\BasicLayout.tsx
  */
 import React, { useRef, useState, useEffect, Children } from 'react';
 import { Link } from 'react-router-dom';
@@ -109,6 +109,7 @@ const BasicLayout: React.FC<ProLayoutProps> = (props) => {
     <ProLayout
       {...{...defaultSettings, ...props, collapsed}}
       actionRef={actionRef}
+      collapsedButtonRender={false}
       rightContentRender={() => <RightContent />}
       onMenuHeaderClick={() => history.push('/home')}
       onCollapse={setCollapsed}

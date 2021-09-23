@@ -1,7 +1,7 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 00:52:36
- * @LastEditTime: 2021-09-24 01:57:03
+ * @LastEditTime: 2021-09-24 02:00:48
  * @LastEditors: Vane
  * @Description:
  * @FilePath: \react-vite-admin\vite.config.ts
@@ -39,8 +39,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
 	// The boolean type read by loadEnv is a string. This function can be converted to boolean type
 	const viteEnv = wrapperEnv(env);
-
-	console.log(1111, env, mode, root);
 
 	const {
 		VITE_PORT,

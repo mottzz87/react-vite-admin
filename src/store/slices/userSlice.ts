@@ -1,10 +1,10 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-28 22:19:15
- * @LastEditTime: 2021-08-31 23:03:09
+ * @LastEditTime: 2021-09-22 10:13:00
  * @LastEditors: Vane
  * @Description:
- * @FilePath: \react-vite\src\store\slices\userSlice.ts
+ * @FilePath: \react-vite-admin\src\store\slices\userSlice.ts
  */
 import { message } from 'antd';
 import { GetState, SetState } from 'zustand';
@@ -80,10 +80,9 @@ const createUserSlice = (set: SetState<MyState>, get: GetState<MyState>) => ({
 		}
 	},
 
-	setUser: async (val) => {
-		await sleep(1000);
-		history.push('/');
-		// set({ user:  });
+	setUser: async (val: any) => {
+		await sleep(300);
+		set({ user: val });
 	},
 
 	setLoading: (val: boolean) => set({ loading: val }),

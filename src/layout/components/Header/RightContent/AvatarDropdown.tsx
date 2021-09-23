@@ -1,10 +1,10 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-31 21:15:29
- * @LastEditTime: 2021-09-01 00:22:48
+ * @LastEditTime: 2021-09-22 10:20:28
  * @LastEditors: Vane
  * @Description: 
- * @FilePath: \react-vite\src\layout\components\Header\RightContent\AvatarDropdown.tsx
+ * @FilePath: \react-vite-admin\src\layout\components\Header\RightContent\AvatarDropdown.tsx
  */
 import React from 'react'
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
@@ -21,12 +21,12 @@ export type HeaderRightProps = {
 
 const AvatarDropdown: React.FC<HeaderRightProps> = ({ menu }) => {
 
-  const { user }  = useStore(state => state)
+  const { user }  = useStore(state => ({ ...state }))
   
   const onMenuClick = (event: any) => {
     
   };
-  const logout = () => {
+  const logout = async () => {
     history.push('/login?redirect=' + encodeURIComponent(window.location.href))
   }
   const menuHeaderDropdown = (

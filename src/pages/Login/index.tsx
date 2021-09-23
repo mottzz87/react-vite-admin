@@ -1,13 +1,13 @@
 /*
  * @Author: Vane
  * @Date: 2021-08-31 20:42:44
- * @LastEditTime: 2021-09-17 20:01:18
+ * @LastEditTime: 2021-09-22 10:17:59
  * @LastEditors: Vane
  * @Description: 
- * @FilePath: \react-vite\src\pages\Login\index.tsx
+ * @FilePath: \react-vite-admin\src\pages\Login\index.tsx
  */
 
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
 
-  const { login, loading } = useStore((state) => ({ ...state }));
+  const { login, loading, setUser } = useStore((state) => ({ ...state }));
 
   const history = useHistory();
 
@@ -67,7 +67,11 @@ const Login: FC<LoginProps> = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const { username, password } = Local.get(ACCOUNT_INFO_KEY);
+  const { password } = Local.get(ACCOUNT_INFO_KEY);
+
+  useEffect(() => {
+    setUser(null)
+  }, [])
 
   return (
     <div className={style.login}>
